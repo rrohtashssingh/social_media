@@ -1,5 +1,18 @@
 ## WHAT I AM USING IN THIS BACKEND FILE:
 
+BASIC THINGS TO KEEP IN MIND: status() 2** = success , 3** = redirect , 4** = client error, 5** = internal server error
+
+success ok= 200
+created = 201
+accepted = 202
+temorary redirect = 307
+permanent redirect = 308
+Bad request = 400
+unauthorized request = 401
+payment required = 402
+not found = 404
+internal server error = 500
+
 Tech Stack: nextJs, Typescript, Tailwind Css, Expressjs, Nodejs, Mongodb, redux, shadcn
 what i installed in backend server npm: bcrypt, jwt, dotenv,mongoose,express,
 
@@ -100,10 +113,37 @@ console.log("could not connect to the database" , error);
 
 -----------------------------------------Done creating User registration and user login with jwt token-----------------------------------
 
-# next day: what i changed
+# next day (Day 02): what i changed
 
 --- i created a new db folder we connected database inside a function which is an async function., all the files are now
 under src folder.
 
 ---i am creating post controller now i have to check first is the user logged in or not if not show error if yes then go for
-post
+post ( ok to check whether the user is logged in or not we have to ensure first do we have token in headers? if no then status(404) if yes
+then verify the token your secret key that you gave while creating login function okay after verifying and storing that verified value in a constant you will be equaling req.userId = decode.userId if it is equal then it will go to post controller if no then it will show error);
+
+--- one thing that i learnt that when a user is logged in only then token is given right and token has its userId which we made equivalent to user.\_id of mongoose database.
+
+# next day: (Day 03)
+
+--- Today my goal is to learn the use of multer and cloudinary also learn http video of code with chai. Ho sake to kal tak post router and controller complete karne ka try karna.
+
+--- So today what we are doing is uploading image on first server using multer and this file will be uploaded to cloudinary so that we can access it.
+
+--- i need to make patch method different for editing the profile fields
+
+# next day: day04
+
+--- Today's plan :
+
+--- so first thing that i learnt today is that i can use $or:[{username},{email}] syntax to check all either this or this should is in the database we will say yes this is already present please login syntax is like
+const user = User.find({
+$or: [{username},{email}];
+})
+
+--- second thing is that we can use the following syntax to check whether the user has passed all the fields or are they empty:
+if([username,email,password].some((field)=>field.trim==="")){
+throw new ApiError(404,"Please Fill All the fields);
+}
+
+---

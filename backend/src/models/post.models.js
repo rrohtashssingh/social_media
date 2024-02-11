@@ -24,6 +24,7 @@ const PostSchema = new mongoose.Schema({
     },
     image: {
         type: String,
+        required:true,
         maxlength: 255
     },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Likes', index: true }],
